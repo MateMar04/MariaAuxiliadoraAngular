@@ -2,13 +2,35 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { AvionesComponent } from './components/aviones/aviones.component';
+import { CombustiblesComponent } from './components/combustibles/combustibles.component';
+import { EquiposComponent } from './components/equipos/equipos.component';
+import { TeamCardComponent } from './components/team-card/team-card.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    AvionesComponent,
+    CombustiblesComponent,
+    EquiposComponent,
+    TeamCardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+      {path: '', component: HomeComponent},
+      {path: 'equipos', component: EquiposComponent},
+      {path: 'aviones', component: AvionesComponent},
+      {path: 'combustibles', component: CombustiblesComponent},
+      {path: '**', redirectTo: '/', pathMatch:'full'}
+      
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
