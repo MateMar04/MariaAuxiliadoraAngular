@@ -9,6 +9,8 @@ import { AvionesComponent } from './components/aviones/aviones.component';
 import { CombustiblesComponent } from './components/combustibles/combustibles.component';
 import { EquiposComponent } from './components/equipos/equipos.component';
 import { TeamCardComponent } from './components/team-card/team-card.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { TanqueComponent } from './components/tanque/tanque.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { TeamCardComponent } from './components/team-card/team-card.component';
     AvionesComponent,
     CombustiblesComponent,
     EquiposComponent,
-    TeamCardComponent
+    TeamCardComponent,
+    CarouselComponent,
+    TanqueComponent
   ],
   imports: [
     BrowserModule,
