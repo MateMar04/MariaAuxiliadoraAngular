@@ -11,6 +11,8 @@ import { EquiposComponent } from './components/equipos/equipos.component';
 import { TeamCardComponent } from './components/team-card/team-card.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { TanqueComponent } from './components/tanque/tanque.component';
+import { PlaneCardComponent } from './components/plane-card/plane-card.component';
+import { PuntajesContenedorComponent } from './components/puntajes-contenedor/puntajes-contenedor.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { TanqueComponent } from './components/tanque/tanque.component';
     EquiposComponent,
     TeamCardComponent,
     CarouselComponent,
-    TanqueComponent
+    TanqueComponent,
+    PlaneCardComponent,
+    PuntajesContenedorComponent
   ],
   imports: [
     BrowserModule,
