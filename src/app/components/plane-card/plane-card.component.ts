@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Puntaje} from "../../models/puntajes";
 
 @Component({
   selector: 'app-plane-card',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plane-card.component.sass']
 })
 export class PlaneCardComponent implements OnInit {
+  @Input() puntaje : Puntaje
 
-  constructor() { }
+  constructor() {
+    this.puntaje = new Puntaje(["papa", "0", "0", "0", "0", "0", "0", "0"]);
+  }
 
   ngOnInit(): void {
   }
-
 }

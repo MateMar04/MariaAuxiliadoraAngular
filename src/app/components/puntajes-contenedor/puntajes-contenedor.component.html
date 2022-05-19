@@ -1,1 +1,4 @@
-<p>puntajes-contenedor works!</p>
+<ng-container *ngFor="let puntaje of puntajes;">
+  <app-plane-card [puntaje]="puntaje">
+  </app-plane-card>
+</ng-container>
