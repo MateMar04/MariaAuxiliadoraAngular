@@ -7,7 +7,7 @@ import {Puntaje} from "../../models/puntajes";
   styleUrls: ['./plane-card.component.sass']
 })
 export class PlaneCardComponent implements OnInit {
-  @Input() puntaje : Puntaje
+  @Input() puntaje: Puntaje
 
   constructor() {
     this.puntaje = new Puntaje(["papa", "0", "0", "0", "0", "0", "0", "0"]);

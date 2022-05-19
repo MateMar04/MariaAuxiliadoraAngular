@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-team-card',
@@ -8,11 +8,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 export class TeamCardComponent implements OnInit {
 
 
+  constructor() {
 
-
-    constructor() {
-
-    }
+  }
 
   ngOnInit(): void {
   }

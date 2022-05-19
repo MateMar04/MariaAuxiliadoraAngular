@@ -7,7 +7,7 @@ import {Puntaje} from "../../models/puntajes";
   styleUrls: ['./puntajes-contenedor.component.sass']
 })
 export class PuntajesContenedorComponent implements OnInit {
-  @Input() puntajes : Puntaje[]
+  @Input() puntajes: Puntaje[]
 
   constructor() {
     this.puntajes = [];
