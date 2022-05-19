@@ -1,33 +1,35 @@
 $primary-color: #920505
+$hover-color: #a6a6a6
+$non-hover-color: white
 
 nav
-    display: flex 
-    justify-content: space-around 
-    align-items: center 
-    min-height: 6vh 
-    background-color: #920505
+  display: flex
+  justify-content: space-around
+  align-items: center
+  min-height: 6vh
+  background-color: #920505
 
-    .navbar-brand
-        color: white 
+  .navbar-brand
+    color: $non-hover-color
 
-    .nav-link
-        color: white
-        text-align: center
+  .nav-link
+    color: $non-hover-color
+    text-align: center
 
-    .nav-link:hover
-        color: blue
+  .nav-link:hover
+    color: $hover-color
 
-    .navbar-brand:hover
-        color: blue
+  .navbar-brand:hover
+    color: $hover-color
 
-    .navbar-toggler
-        color: white
+  .navbar-toggler
+    color: white
 
-    .navbar-toggler-icon .span
-        color: white
+  .navbar-toggler-icon .span
+    color: white
 
-    .burger
-        padding: 1px
-        background-color: white
-        margin-bottom: 33%
+  .burger
+    padding: 1px
+    background-color: white
+    margin-bottom: 33%
 

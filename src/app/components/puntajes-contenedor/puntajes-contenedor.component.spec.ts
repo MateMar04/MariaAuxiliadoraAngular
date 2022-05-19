@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PuntajesContenedorComponent } from './puntajes-contenedor.component';
+import {PuntajesContenedorComponent} from './puntajes-contenedor.component';
 
 describe('PuntajesContenedorComponent', () => {
   let component: PuntajesContenedorComponent;
@@ -8,9 +8,9 @@ describe('PuntajesContenedorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PuntajesContenedorComponent ]
+      declarations: [PuntajesContenedorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
