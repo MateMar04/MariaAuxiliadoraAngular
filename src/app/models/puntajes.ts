@@ -20,9 +20,3 @@ export class Puntaje {
 export interface GPuntajes {
   values: Array<Array<string>>
 }
-
-export class PuntajesMapper {
-  public static toPuntajes(gpuntajes: GPuntajes): Puntaje[] {
-    return gpuntajes.values.slice(1).map(v => new Puntaje(v))
-  }
-}

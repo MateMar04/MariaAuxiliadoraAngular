@@ -1,2 +1,4 @@
-<app-tanque></app-tanque>
-
+<ng-container *ngFor="let puntaje of puntajes;">
+  <app-tanque [puntaje]="puntaje">
+  </app-tanque>
+</ng-container>

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Puntaje, PuntajesMapper} from "../../models/puntajes";
+import {Puntaje} from "../../models/puntajes";
+import {PuntajesService} from "../../puntajes.service";
 
 @Component({
   selector: 'app-aviones',
@@ -7,20 +8,15 @@ import {Puntaje, PuntajesMapper} from "../../models/puntajes";
   styleUrls: ['./aviones.component.sass']
 })
 export class AvionesComponent implements OnInit {
-  puntajes: Puntaje[]
+  puntajes: Puntaje[] = []
 
-  constructor() {
-    this.puntajes = PuntajesMapper.toPuntajes({
-      values: [
-        ["PAIS", "ALAS", "FUSELAJE", "RUEDAS", "COLA", "NAFTA"],
-        ["ARGENTINA", "1", "1", "2", "1", "90"],
-        ["COLOMBIA", "2", "1", "2", "0", "70"],
-        ["MEXICO", "3", "1", "3", "1", "80"]
-      ]
-    });
+  constructor(private puntajesService: PuntajesService) {
+
   }
 
   ngOnInit(): void {
+    this.puntajes = [];
+    this.puntajesService.getPuntajes().subscribe(ps => this.puntajes = ps)
   }
 
 }
