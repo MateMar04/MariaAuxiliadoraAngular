@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Equipo} from "../../models/equipo";
 
 @Component({
   selector: 'app-team-card',
@@ -6,10 +7,10 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./team-card.component.sass']
 })
 export class TeamCardComponent implements OnInit {
-
+  @Input() equipo : Equipo
 
   constructor() {
-
+    this.equipo = new Equipo(["", "", "", ""])
   }
 
   ngOnInit(): void {

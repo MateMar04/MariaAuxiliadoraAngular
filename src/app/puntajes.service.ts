@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from "rxjs";
-import {GPuntajes, Puntaje} from "./models/puntajes";
+import {Puntaje} from "./models/puntajes";
+import {GSheet} from "./models/gsheet";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ export class PuntajesService {
   constructor() {
   }
 
-  private toPuntajes(gpuntajes: GPuntajes): Puntaje[] {
-    return gpuntajes.values.slice(1).map(v => new Puntaje(v))
+  private toPuntajes(gsheet: GSheet): Puntaje[] {
+    return gsheet.values.slice(1).map(v => new Puntaje(v))
   }
 
   getPuntajes(): Observable<Puntaje[]> {
@@ -23,15 +24,19 @@ export class PuntajesService {
           "FUSELAJE",
           "RUEDAS",
           "COLA",
-          "NAFTA"
+          "NAFTA",
+          "MOTOR",
+          "PASAPORTE"
         ],
         [
           "ALEMANIA",
           "1",
+          "0",
           "1",
           "1",
-          "1",
-          "90"
+          "90",
+          "0",
+          "0"
         ],
         [
           "ARABIA SAUDITA",
@@ -39,15 +44,19 @@ export class PuntajesService {
           "1",
           "2",
           "2",
-          "80"
+          "80",
+          "1",
+          "1"
         ],
         [
           "ARGENTINA",
           "3",
-          "1",
+          "0",
           "3",
           "3",
-          "70"
+          "70",
+          "0",
+          "0"
         ],
         [
           "BELGICA",
@@ -55,15 +64,19 @@ export class PuntajesService {
           "1",
           "1",
           "1",
-          "60"
+          "60",
+          "1",
+          "1"
         ],
         [
           "BRASIL",
           "2",
-          "1",
+          "0",
           "2",
           "2",
-          "50"
+          "50",
+          "0",
+          "0"
         ],
         [
           "CAMERUN",
@@ -71,15 +84,19 @@ export class PuntajesService {
           "1",
           "3",
           "3",
-          "40"
+          "40",
+          "1",
+          "1"
         ],
         [
           "CANADA",
           "1",
+          "0",
           "1",
           "1",
-          "1",
-          "30"
+          "30",
+          "0",
+          "0"
         ],
         [
           "COLOMBIA",
@@ -87,15 +104,19 @@ export class PuntajesService {
           "1",
           "2",
           "2",
-          "20"
+          "20",
+          "1",
+          "1"
         ],
         [
           "COREA",
           "3",
-          "1",
+          "0",
           "3",
           "3",
-          "10"
+          "10",
+          "0",
+          "0"
         ],
         [
           "CROACIA",
@@ -103,15 +124,19 @@ export class PuntajesService {
           "1",
           "1",
           "1",
-          "0"
+          "0",
+          "1",
+          "1"
         ],
         [
           "DINAMARCA",
           "2",
-          "1",
+          "0",
           "2",
           "2",
-          "90"
+          "90",
+          "0",
+          "0"
         ],
         [
           "ECUADOR",
@@ -119,15 +144,19 @@ export class PuntajesService {
           "1",
           "3",
           "3",
-          "80"
+          "80",
+          "1",
+          "1"
         ],
         [
           "EGIPTO",
           "1",
+          "0",
           "1",
           "1",
-          "1",
-          "70"
+          "70",
+          "0",
+          "0"
         ],
         [
           "ESPAÑA",
@@ -135,15 +164,19 @@ export class PuntajesService {
           "1",
           "2",
           "2",
-          "60"
+          "60",
+          "1",
+          "1"
         ],
         [
           "ESTADOS UNIDOS",
           "3",
-          "1",
+          "0",
           "3",
           "3",
-          "50"
+          "50",
+          "0",
+          "0"
         ],
         [
           "FRANCIA",
@@ -151,15 +184,19 @@ export class PuntajesService {
           "1",
           "1",
           "1",
-          "40"
+          "40",
+          "1",
+          "1"
         ],
         [
           "GHANA",
           "2",
-          "1",
+          "0",
           "2",
           "2",
-          "30"
+          "30",
+          "0",
+          "0"
         ],
         [
           "HOLANDA",
@@ -167,15 +204,19 @@ export class PuntajesService {
           "1",
           "3",
           "3",
-          "20"
+          "20",
+          "1",
+          "1"
         ],
         [
           "INGLATERRA",
           "1",
+          "0",
           "1",
           "1",
-          "1",
-          "10"
+          "10",
+          "0",
+          "0"
         ],
         [
           "IRAN",
@@ -183,15 +224,19 @@ export class PuntajesService {
           "1",
           "2",
           "2",
-          "0"
+          "0",
+          "1",
+          "1"
         ],
         [
           "JAPON",
           "3",
-          "1",
+          "0",
           "3",
           "3",
-          "90"
+          "90",
+          "0",
+          "0"
         ],
         [
           "MEXICO",
@@ -199,15 +244,19 @@ export class PuntajesService {
           "1",
           "1",
           "1",
-          "80"
+          "80",
+          "1",
+          "1"
         ],
         [
           "PERU",
           "2",
-          "1",
+          "0",
           "2",
           "2",
-          "70"
+          "70",
+          "0",
+          "0"
         ],
         [
           "POLONIA",
@@ -215,15 +264,19 @@ export class PuntajesService {
           "1",
           "3",
           "3",
-          "60"
+          "60",
+          "1",
+          "1"
         ],
         [
           "PORTUGAL",
           "1",
+          "0",
           "1",
           "1",
-          "1",
-          "50"
+          "50",
+          "0",
+          "0"
         ],
         [
           "QATAR",
@@ -231,15 +284,19 @@ export class PuntajesService {
           "1",
           "2",
           "2",
-          "40"
+          "40",
+          "1",
+          "1"
         ],
         [
           "RUSIA",
           "3",
-          "1",
+          "0",
           "3",
           "3",
-          "30"
+          "30",
+          "0",
+          "0"
         ],
         [
           "SENEGAL",
@@ -247,15 +304,19 @@ export class PuntajesService {
           "1",
           "1",
           "1",
-          "20"
+          "20",
+          "1",
+          "1"
         ],
         [
           "SERBIA",
           "2",
-          "1",
+          "0",
           "2",
           "2",
-          "10"
+          "10",
+          "0",
+          "0"
         ],
         [
           "SUIZA",
@@ -263,15 +324,19 @@ export class PuntajesService {
           "1",
           "3",
           "3",
-          "67"
+          "0",
+          "1",
+          "1"
         ],
         [
           "TUNEZ",
           "2",
-          "1",
+          "0",
           "2",
           "2",
-          "43"
+          "43",
+          "0",
+          "0"
         ],
         [
           "URUGUAY",
@@ -279,7 +344,9 @@ export class PuntajesService {
           "1",
           "1",
           "1",
-          "32"
+          "32",
+          "1",
+          "1"
         ]
       ]
     }));

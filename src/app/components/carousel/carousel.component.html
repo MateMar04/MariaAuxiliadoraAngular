@@ -7,7 +7,10 @@
       <app-team-card></app-team-card>
     </div>
     <div class="carousel-item">
-      <app-team-card></app-team-card>
+      <ng-container *ngFor="let equipo of equipos;">
+        <app-team-card [equipo]="equipo">
+        </app-team-card>
+      </ng-container>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
