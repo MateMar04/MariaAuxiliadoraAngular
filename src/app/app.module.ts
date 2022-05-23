@@ -12,6 +12,7 @@ import {TeamCardComponent} from './components/team-card/team-card.component';
 import {TanqueComponent} from './components/tanque/tanque.component';
 import {PlaneCardComponent} from './components/plane-card/plane-card.component';
 import {PuntajesContenedorComponent} from './components/puntajes-contenedor/puntajes-contenedor.component';
+import { WorkingComponent } from './components/working/working.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {PuntajesContenedorComponent} from './components/puntajes-contenedor/punt
     TanqueComponent,
     PlaneCardComponent,
     PuntajesContenedorComponent,
+    WorkingComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,9 @@ import {PuntajesContenedorComponent} from './components/puntajes-contenedor/punt
       {path: 'equipos', component: TeamsComponent},
       {path: 'aviones', component: PlanesComponent},
       {path: 'combustibles', component: CombustiblesComponent},
+      {path: 'reglas', component: WorkingComponent},
+      {path: 'oasis', component: WorkingComponent},
+      {path: 'islas', component: WorkingComponent},
       {path: '**', redirectTo: '/', pathMatch: 'full'}
 
     ])
