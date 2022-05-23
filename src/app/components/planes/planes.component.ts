@@ -3,14 +3,15 @@ import {Puntaje} from "../../models/puntajes";
 import {SheetsService} from "../../sheets.service";
 
 @Component({
-  selector: 'app-combustibles',
-  templateUrl: './combustibles.component.html',
-  styleUrls: ['./combustibles.component.sass']
+  selector: 'app-planes',
+  templateUrl: './planes.component.html',
+  styleUrls: ['./planes.component.sass']
 })
-export class CombustiblesComponent implements OnInit {
+export class PlanesComponent implements OnInit {
   puntajes: Puntaje[] = []
 
   constructor(private sheetsService: SheetsService) {
+
   }
 
   ngOnInit(): void {

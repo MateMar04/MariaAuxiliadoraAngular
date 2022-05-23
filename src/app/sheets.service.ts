@@ -1,12 +1,16 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from "rxjs";
+import {from, Observable, of} from "rxjs";
 import {Equipo} from "./models/equipo";
 import {GSheet} from "./models/gsheet";
+import {Puntaje} from "./models/puntajes";
+
+
+declare var gapi: any;
 
 @Injectable({
   providedIn: 'root'
 })
-export class EquiposService {
+export class SheetsService {
 
   constructor() {
   }
@@ -16,7 +20,10 @@ export class EquiposService {
   }
 
   getEquipos(): Observable<Equipo[]> {
+    // this.handleSignInClick(null);
+    // return from(this.handleClientLoad("'Equipos'!A1:F33").then(g => this.toEquipos(g)))
     return of(this.toEquipos({
+      majorDimension: "", range: "",
       "values": [
         [
           "PAIS",
@@ -217,7 +224,411 @@ export class EquiposService {
           "Dominguez Duarte Marco Antonio\nMorais Joaquín\nMachuca Ibañez Mateo Tomás\nCastro Lencina, Mateo Benjamin\nViva, Jeremías Nicolás\nMárquez Lisandro\nGuchea Lezama, Augusto\nMartiarena Tomás\nCimatti Bautista\nBianchettin, Emilio Augusto\nVelez Villalva Valentino\nQuaino Juan Cruz\nBabiachuk Yaco Iván\nSuarez, Lautaro Ismael\nLópez, Mateo Gustavo\nMorales, Jerónimo\nLeoni, Mateo Macario"
         ]
       ]
-    }))
+    }));
+  }
+
+  private toPuntajes(gsheet: GSheet): Puntaje[] {
+    return gsheet.values.slice(1).map(v => new Puntaje(v))
+  }
+
+  getPuntajes(): Observable<Puntaje[]> {
+    // this.handleSignInClick(null);
+    // return from(this.handleClientLoad("'Puntajes'!A1:H33").then(g => this.toPuntajes(g)))
+    return of(this.toPuntajes({
+      majorDimension: "", range: "",
+      "values": [
+        [
+          "PAIS",
+          "ALAS",
+          "FUSELAJE",
+          "RUEDAS",
+          "COLA",
+          "NAFTA",
+          "MOTOR",
+          "PASAPORTE"
+        ],
+        [
+          "ALEMANIA",
+          "1",
+          "0",
+          "1",
+          "1",
+          "90",
+          "0",
+          "0"
+        ],
+        [
+          "ARABIA SAUDITA",
+          "2",
+          "1",
+          "2",
+          "2",
+          "80",
+          "1",
+          "1"
+        ],
+        [
+          "ARGENTINA",
+          "3",
+          "0",
+          "3",
+          "3",
+          "70",
+          "0",
+          "0"
+        ],
+        [
+          "BELGICA",
+          "1",
+          "1",
+          "1",
+          "1",
+          "60",
+          "1",
+          "1"
+        ],
+        [
+          "BRASIL",
+          "2",
+          "0",
+          "2",
+          "2",
+          "50",
+          "0",
+          "0"
+        ],
+        [
+          "CAMERUN",
+          "3",
+          "1",
+          "3",
+          "3",
+          "40",
+          "1",
+          "1"
+        ],
+        [
+          "CANADA",
+          "1",
+          "0",
+          "1",
+          "1",
+          "30",
+          "0",
+          "0"
+        ],
+        [
+          "COLOMBIA",
+          "2",
+          "1",
+          "2",
+          "2",
+          "20",
+          "1",
+          "1"
+        ],
+        [
+          "COREA",
+          "3",
+          "0",
+          "3",
+          "3",
+          "10",
+          "0",
+          "0"
+        ],
+        [
+          "CROACIA",
+          "1",
+          "1",
+          "1",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        [
+          "DINAMARCA",
+          "2",
+          "0",
+          "2",
+          "2",
+          "90",
+          "0",
+          "0"
+        ],
+        [
+          "ECUADOR",
+          "3",
+          "1",
+          "3",
+          "3",
+          "80",
+          "1",
+          "1"
+        ],
+        [
+          "EGIPTO",
+          "1",
+          "0",
+          "1",
+          "1",
+          "70",
+          "0",
+          "0"
+        ],
+        [
+          "ESPAÑA",
+          "2",
+          "1",
+          "2",
+          "2",
+          "60",
+          "1",
+          "1"
+        ],
+        [
+          "ESTADOS UNIDOS",
+          "3",
+          "0",
+          "3",
+          "3",
+          "50",
+          "0",
+          "0"
+        ],
+        [
+          "FRANCIA",
+          "1",
+          "1",
+          "1",
+          "1",
+          "40",
+          "1",
+          "1"
+        ],
+        [
+          "GHANA",
+          "2",
+          "0",
+          "2",
+          "2",
+          "30",
+          "0",
+          "0"
+        ],
+        [
+          "HOLANDA",
+          "3",
+          "1",
+          "3",
+          "3",
+          "20",
+          "1",
+          "1"
+        ],
+        [
+          "INGLATERRA",
+          "1",
+          "0",
+          "1",
+          "1",
+          "10",
+          "0",
+          "0"
+        ],
+        [
+          "IRAN",
+          "2",
+          "1",
+          "2",
+          "2",
+          "34",
+          "1",
+          "1"
+        ],
+        [
+          "JAPON",
+          "3",
+          "0",
+          "3",
+          "3",
+          "90",
+          "0",
+          "0"
+        ],
+        [
+          "MEXICO",
+          "1",
+          "1",
+          "1",
+          "1",
+          "80",
+          "1",
+          "1"
+        ],
+        [
+          "PERU",
+          "2",
+          "0",
+          "2",
+          "2",
+          "70",
+          "0",
+          "0"
+        ],
+        [
+          "POLONIA",
+          "3",
+          "1",
+          "3",
+          "3",
+          "60",
+          "1",
+          "1"
+        ],
+        [
+          "PORTUGAL",
+          "1",
+          "0",
+          "1",
+          "1",
+          "50",
+          "0",
+          "0"
+        ],
+        [
+          "QATAR",
+          "2",
+          "1",
+          "2",
+          "2",
+          "40",
+          "1",
+          "1"
+        ],
+        [
+          "RUSIA",
+          "3",
+          "0",
+          "3",
+          "3",
+          "30",
+          "0",
+          "0"
+        ],
+        [
+          "SENEGAL",
+          "1",
+          "1",
+          "1",
+          "1",
+          "20",
+          "1",
+          "1"
+        ],
+        [
+          "SERBIA",
+          "2",
+          "0",
+          "2",
+          "2",
+          "10",
+          "0",
+          "0"
+        ],
+        [
+          "SUIZA",
+          "3",
+          "1",
+          "3",
+          "3",
+          "0",
+          "1",
+          "1"
+        ],
+        [
+          "TUNEZ",
+          "2",
+          "0",
+          "2",
+          "2",
+          "43",
+          "0",
+          "0"
+        ],
+        [
+          "URUGUAY",
+          "1",
+          "1",
+          "1",
+          "1",
+          "32",
+          "1",
+          "1"
+        ]
+      ]
+    }));
+  }
+
+  makeApiCall(range: string) {
+    var params = {
+      // The ID of the spreadsheet to retrieve data from.
+      spreadsheetId: '1W6GZd4QipZVdm4PJwoLzCcTW8qphGUa6H4_1Rbw2xRo',
+
+      // The A1 notation of the values to retrieve.
+      range: range,
+
+      // How values should be represented in the output.
+      // The default render option is ValueRenderOption.FORMATTED_VALUE.
+      valueRenderOption: '',
+
+      // How dates, times, and durations should be represented in the output.
+      // This is ignored if value_render_option is
+      // FORMATTED_VALUE.
+      // The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+      dateTimeRenderOption: '',
+    };
+
+    return gapi.client.sheets.spreadsheets.values.get(params);
+
+  }
+
+  initClient(range: string) {
+    var API_KEY = 'AIzaSyBvyqJVeKKApOYSyY_1_2LIkVCm3c50JkM';
+
+    var CLIENT_ID = '493427967009-jh0thlsnfauud0k8r8v35mvb6bd1ccj8.apps.googleusercontent.com';
+
+    var SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+
+    gapi.client.init({
+      'apiKey': API_KEY,
+      'clientId': CLIENT_ID,
+      'scope': SCOPE,
+      'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+    }).then(() => {
+      gapi.auth2.getAuthInstance().isSignedIn.listen((v: boolean) => this.updateSignInStatus(v, range));
+      this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get(), range);
+    });
+  }
+
+  handleClientLoad(range: string): Promise<GSheet> {
+    return gapi.load('client:auth2', () => this.initClient(range));
+  }
+
+  updateSignInStatus(isSignedIn: boolean, range: string) {
+    if (isSignedIn) {
+      return this.makeApiCall(range);
+    }
+    return Promise.reject("No Autenticaddo")
+  }
+
+  handleSignInClick(event: any) {
+    gapi.auth2.getAuthInstance().signIn();
+  }
+
+  handleSignOutClick(event: any) {
+    gapi.auth2.getAuthInstance().signOut();
   }
 }
 

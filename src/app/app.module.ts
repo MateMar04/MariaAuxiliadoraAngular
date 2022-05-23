@@ -5,11 +5,10 @@ import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {HomeComponent} from './components/home/home.component';
-import {AvionesComponent} from './components/aviones/aviones.component';
+import {PlanesComponent} from './components/planes/planes.component';
 import {CombustiblesComponent} from './components/combustibles/combustibles.component';
-import {EquiposComponent} from './components/equipos/equipos.component';
+import {TeamsComponent} from './components/teams/teams.component';
 import {TeamCardComponent} from './components/team-card/team-card.component';
-import {CarouselComponent} from './components/carousel/carousel.component';
 import {TanqueComponent} from './components/tanque/tanque.component';
 import {PlaneCardComponent} from './components/plane-card/plane-card.component';
 import {PuntajesContenedorComponent} from './components/puntajes-contenedor/puntajes-contenedor.component';
@@ -20,21 +19,20 @@ import {PuntajesContenedorComponent} from './components/puntajes-contenedor/punt
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    AvionesComponent,
+    PlanesComponent,
     CombustiblesComponent,
-    EquiposComponent,
+    TeamsComponent,
     TeamCardComponent,
-    CarouselComponent,
     TanqueComponent,
     PlaneCardComponent,
-    PuntajesContenedorComponent
+    PuntajesContenedorComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
-      {path: 'equipos', component: EquiposComponent},
-      {path: 'aviones', component: AvionesComponent},
+      {path: 'equipos', component: TeamsComponent},
+      {path: 'aviones', component: PlanesComponent},
       {path: 'combustibles', component: CombustiblesComponent},
       {path: '**', redirectTo: '/', pathMatch: 'full'}
 

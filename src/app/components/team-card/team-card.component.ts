@@ -7,7 +7,7 @@ import {Equipo} from "../../models/equipo";
   styleUrls: ['./team-card.component.sass']
 })
 export class TeamCardComponent implements OnInit {
-  @Input() equipo : Equipo
+  @Input() equipo: Equipo
 
   constructor() {
     this.equipo = new Equipo(["", "", "", ""])
