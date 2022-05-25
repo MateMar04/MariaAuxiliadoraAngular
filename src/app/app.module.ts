@@ -12,8 +12,7 @@ import {TeamCardComponent} from './components/team-card/team-card.component';
 import {TanqueComponent} from './components/tanque/tanque.component';
 import {PlaneCardComponent} from './components/plane-card/plane-card.component';
 import {PuntajesContenedorComponent} from './components/puntajes-contenedor/puntajes-contenedor.component';
-import { WorkingComponent } from './components/working/working.component';
-
+import {WorkingComponent} from './components/working/working.component';
 
 @NgModule({
   declarations: [
