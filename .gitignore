@@ -42,4 +42,5 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
-dist/*
+/dist
+/dist/*

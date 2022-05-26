@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {Equipo} from "./models/equipo";
 import {Puntaje} from "./models/puntajes";
 import {GSheet} from "./models/gsheet";
@@ -8,12 +8,6 @@ declare var google: any;
 
 const CLIENT_ID = '493427967009-jh0thlsnfauud0k8r8v35mvb6bd1ccj8.apps.googleusercontent.com';
 const SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
-
-const EMPTY_SHEET: GSheet = {
-  range: '',
-  majorDimension: '',
-  values: []
-};
 
 @Injectable({
   providedIn: 'root'
@@ -26,46 +20,41 @@ export class SheetsService {
   client: any;
   token_expiration: Date = new Date();
   token_response: any = {expires_in: 0};
-  authenticated: boolean = false;
   authenticating: boolean = false;
 
-  private equipos: GSheet = EMPTY_SHEET;
-  private puntajes: GSheet = EMPTY_SHEET;
-
-  private authenticate(): boolean {
-    if (!this.authenticating && new Date() >= this.token_expiration) {
-      this.authenticating = true;
-      this.authenticated = false;
-      this.client = google.accounts.oauth2.initTokenClient({
-        client_id: CLIENT_ID,
-        scope: SCOPE,
-        callback: (tokenResponse: any) => {
-          this.token_response = tokenResponse;
-          let now = new Date();
-          now.setSeconds(now.getSeconds() + tokenResponse.expires_in);
-          this.token_expiration = now;
-          this.authenticating = false;
-          this.authenticated = true;
-        },
-      });
-      this.client.requestAccessToken();
-    }
-    return this.authenticated && !this.authenticating;
+  private tokenExpired() : boolean {
+    return new Date() >= this.token_expiration
   }
 
-  private toEquipos(gsheet: GSheet): Equipo[] {
-    return gsheet.values.slice(1).map((v: any) => new Equipo(v))
+  private authenticate<T>(getter: () => T): Observable<T> {
+    return new Observable<T>(observable => {
+      if (this.tokenExpired()) {
+        this.authenticating = true;
+        this.client = google.accounts.oauth2.initTokenClient({
+          client_id: CLIENT_ID,
+          scope: SCOPE,
+          callback: (tokenResponse: any) => {
+            this.token_response = tokenResponse;
+            let now = new Date();
+            now.setSeconds(now.getSeconds() + (tokenResponse.expires_in - 10));
+            this.token_expiration = now;
+            this.authenticating = false;
+            observable.next(getter());
+          },
+        });
+        this.client.requestAccessToken();
+      } else {
+        observable.next(getter());
+      }
+    });
   }
 
-  private toPuntajes(gsheet: GSheet): Puntaje[] {
-    return gsheet.values.slice(1).map((v: any) => new Puntaje(v))
+  private static toEntities<T>(gsheet: GSheet, mapper: (v: string[]) => T): T[] {
+    return gsheet.values.slice(1).map(mapper)
   }
 
   getEquipos(): Observable<Equipo[]> {
-    if (this.authenticate()) {
-      this.equipos = this.loadSheet("%27Equipos%27!A1%3AD33");
-    }
-    return of(this.toEquipos(this.equipos));
+    return this.authenticate(() => this.loadEntities("%27Equipos%27!A1%3AD33", v => new Equipo(v)));
     /*
         return of(this.toEquipos({
             majorDimension: "", range: "",
@@ -274,10 +263,7 @@ export class SheetsService {
   }
 
   getPuntajes(): Observable<Puntaje[]> {
-    if (this.authenticate()) {
-      this.puntajes = this.loadSheet("%27Puntajes%27!A1%3AH33");
-    }
-    return of(this.toPuntajes(this.puntajes));
+    return this.authenticate(() => this.loadEntities("%27Puntajes%27!A1%3AH33", v => new Puntaje(v)));
     /*
         return of(this.toPuntajes({
           majorDimension: "", range: "",
@@ -617,14 +603,14 @@ export class SheetsService {
     */
   }
 
-  loadSheet(range: string): GSheet {
+  private loadEntities<T>(range: string, mapper: (v: string[]) => T): T[] {
     const API_KEY = 'AIzaSyBvyqJVeKKApOYSyY_1_2LIkVCm3c50JkM';
     const http = new XMLHttpRequest();
     http.open('GET', 'https://sheets.googleapis.com/v4/spreadsheets/1W6GZd4QipZVdm4PJwoLzCcTW8qphGUa6H4_1Rbw2xRo/values/' + range + '?access_token=' + this.token_response.access_token + '&key=' + API_KEY, false);
     http.setRequestHeader('Authorization', this.token_response.token_type + ' ' + this.token_response.access_token);
     http.setRequestHeader('Accept', 'application/json');
     http.send(null);
-    return JSON.parse(http.responseText)
+    return SheetsService.toEntities(JSON.parse(http.responseText), mapper);
   }
 }
 
