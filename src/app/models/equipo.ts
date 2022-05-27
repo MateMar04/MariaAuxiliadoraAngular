@@ -6,7 +6,7 @@ export class Equipo {
   piloto: string;
   tripulacion: string[];
 
-  constructor(values : string[]) {
+  constructor(values: string[]) {
     this.pais = new Pais(values[0]);
     this.embajador = values[1];
     this.piloto = values[2];

@@ -22,7 +22,7 @@ export class SheetsService {
   token_response: any = {expires_in: 0};
   authenticating: boolean = false;
 
-  private tokenExpired() : boolean {
+  private tokenExpired(): boolean {
     return new Date() >= this.token_expiration
   }
 

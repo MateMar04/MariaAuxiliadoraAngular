@@ -22,6 +22,7 @@ export class Puntaje {
 
 export class Pais {
   public flagImage: string
+
   constructor(public nombre: string) {
     this.flagImage = nombre.replace(" ", "-").toLowerCase() + ".svg"
   }

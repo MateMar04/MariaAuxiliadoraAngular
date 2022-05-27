@@ -13,7 +13,7 @@ import {TanqueComponent} from './components/tanque/tanque.component';
 import {PlaneCardComponent} from './components/plane-card/plane-card.component';
 import {PuntajesContenedorComponent} from './components/puntajes-contenedor/puntajes-contenedor.component';
 import {WorkingComponent} from './components/working/working.component';
-import { ReglamentoComponent } from './components/reglamento/reglamento.component';
+import {ReglamentoComponent} from './components/reglamento/reglamento.component';
 
 @NgModule({
   declarations: [
